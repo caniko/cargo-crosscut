@@ -1,0 +1,28 @@
+[package]
+name = "cargo-crosscut"
+description = "Analyze Rust workspace layout — compartment and tiling decomposition"
+keywords = ["cargo", "workspace", "layout", "analysis"]
+categories = ["development-tools::cargo-plugins"]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+license = "MIT"
+repository = "https://codeberg.org/caniko/cargo-crosscut"
+readme = "README.md"
+
+[lib]
+name = "cargo_crosscut"
+path = "src/lib.rs"
+
+[[bin]]
+name = "cargo-crosscut"
+path = "src/main.rs"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+toml = "0.9"
+
+[dev-dependencies]
+tempfile = "3"
