@@ -58,6 +58,10 @@ match layout {
 }
 ```
 
+## CI
+
+Woodpecker CI on Codeberg runs `cargo build`, `cargo test`, `cargo clippy`, and `cargo fmt --check` on every push and pull request.
+
 ## License
 
 MIT
