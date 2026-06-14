@@ -1,0 +1,41 @@
+[site]
+title = "cargo-crosscut"
+description = "Analyze Rust workspace layout by decomposing large workspaces into bounded analysis units. Useful for partitioning codebases into chunks that fit within LLM context windows or for understanding workspace structure."
+base_url = "/"
+footer_note = "Generated from repository metadata by the plinth-project FOSS sweep."
+
+[[nav]]
+label = "Overview"
+href = "#overview"
+
+[[nav]]
+label = "Source"
+href = "ssh://git@codeberg.org/caniko/cargo-crosscut.git"
+
+[[footer_links]]
+label = "Source"
+href = "ssh://git@codeberg.org/caniko/cargo-crosscut.git"
+
+[[pages]]
+slug = "index"
+title = "cargo-crosscut"
+description = "Analyze Rust workspace layout by decomposing large workspaces into bounded analysis units. Useful for partitioning codebases into chunks that fit within LLM context windows or for understanding workspace structure."
+
+[[pages.sections]]
+type = "hero"
+title = "cargo-crosscut"
+tagline = "Analyze Rust workspace layout by decomposing large workspaces into bounded analysis units. Useful for partitioning codebases into chunks that fit within LLM context windows or for understanding workspace structure."
+subtitle = "Analyze Rust workspace layout by decomposing large workspaces into bounded analysis units. Useful for partitioning codebases into chunks that fit within LLM context windows or for understanding workspace structure."
+
+[[pages.sections.ctas]]
+label = "View source"
+href = "ssh://git@codeberg.org/caniko/cargo-crosscut.git"
+primary = true
+
+[[pages.sections]]
+type = "feature_grid"
+id = "overview"
+
+[[pages.sections.features]]
+title = "Rust"
+description = "Project technology detected from repository manifests."
