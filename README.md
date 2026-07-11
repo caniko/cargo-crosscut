@@ -1,7 +1,7 @@
 # cargo-crosscut
 
 <!-- simit:badges:start -->
-[![CI](https://img.shields.io/badge/CI-drift-2088ff)](.forgejo/workflows/ci.yaml) [![Nix](https://img.shields.io/badge/Nix-managed-5277c3)](flake.nix) [![crates.io](https://img.shields.io/badge/crates.io-ready-f46623)](https://crates.io/crates/cargo-crosscut)
+[![CI](https://img.shields.io/badge/CI-managed-2088ff)](.forgejo/workflows/ci.yaml) [![Nix](https://img.shields.io/badge/Nix-managed-5277c3)](flake.nix) [![crates.io](https://img.shields.io/badge/crates.io-ready-f46623)](https://crates.io/crates/cargo-crosscut)
 <!-- simit:badges:end -->
 
 Analyze Rust workspace layout by decomposing large workspaces into bounded analysis units. Useful for partitioning codebases into chunks that fit within LLM context windows or for understanding workspace structure.
