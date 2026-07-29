@@ -37,5 +37,17 @@ type = "feature_grid"
 id = "overview"
 
 [[pages.sections.features]]
-title = "Rust"
-description = "Project technology detected from repository manifests."
+title = "Bounded compartments"
+description = "Groups crates into LOC-bounded partitions, separating large crates from clusters of smaller ones so analysis fits a deliberate working set."
+
+[[pages.sections.features]]
+title = "Overlap tiles"
+description = "Builds cross-boundary analysis units for studying dependencies that span compartment boundaries."
+
+[[pages.sections.features]]
+title = "Connectivity tiles"
+description = "Uses agglomerative clustering to expose duplication and DRY relationships across crate boundaries."
+
+[[pages.sections.features]]
+title = "Workspace connectome"
+description = "Emits the full workspace dependency graph as named directed edges, with JSON output for downstream tooling."
