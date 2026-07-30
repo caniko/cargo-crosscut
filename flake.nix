@@ -29,8 +29,8 @@
         inherit system;
         overlays = [rust-overlay.overlays.default];
       };
-      toolchain = rs-harbor.lib.mkToolchain { toolchainProfile = "stable"; };
-      rustPlatform = pkgs.makeRustPlatform { rustc = toolchain; cargo = toolchain; };
+      toolchain = rs-harbor.lib.mkToolchain { inherit pkgs; toolchainProfile = "stable"; };
+      rustPlatform = pkgs.makeRustPlatform { rustc = toolchain.rustToolchain; cargo = toolchain.rustToolchain; };
       buildCache = rs-harbor.lib.mkBuildCachePolicy {
         inherit pkgs;
         sccachePackage = rs-harbor.packages.${system}.sccache;
