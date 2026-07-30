@@ -2,7 +2,7 @@
   description = "Analyze Rust workspace layout by decomposing large workspaces into bounded analysis units";
 
   inputs = {
-    rs-harbor.url = "git+https://codeberg.org/caniko/rs-harbor.git?ref=trunk&rev=9bfa8bdb0ecb22d7bc11448665f7fbaebae7a759";
+    rs-harbor.url = "git+https://codeberg.org/caniko/rs-harbor.git?ref=trunk&rev=c26b735eede8078f795651c4a9cbf0be8733b221";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
@@ -29,7 +29,8 @@
         inherit system;
         overlays = [rust-overlay.overlays.default];
       };
-      rustToolchain = pkgs.rust-bin.stable.latest.default;
+      toolchain = rs-harbor.lib.mkToolchain { toolchainProfile = "stable"; };
+      rustPlatform = pkgs.makeRustPlatform { rustc = toolchain; cargo = toolchain; };
       buildCache = rs-harbor.lib.mkBuildCachePolicy {
         inherit pkgs;
         sccachePackage = rs-harbor.packages.${system}.sccache;
@@ -42,12 +43,11 @@
         domain = "cargo-crosscut.tartanoglu.com";
         configPath = ./website/plinth-project.toml;
       };
-      cargo-crosscut = buildCache.withRustCache { package = pkgs.rustPlatform.buildRustPackage {
+      cargo-crosscut = buildCache.withRustCache { package = rustPlatform.buildRustPackage {
         pname = "cargo-crosscut";
         version = "0.1.0";
         src = ./.;
         cargoLock.lockFile = ./Cargo.lock;
-        nativeBuildInputs = [rustToolchain];
         meta.mainProgram = "cargo-crosscut";
       }; };
     in {
