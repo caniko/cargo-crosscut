@@ -24,13 +24,31 @@
     systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
     forAllSystems = nixpkgs.lib.genAttrs systems;
   in {
+    devShells = forAllSystems (system: let
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [rust-overlay.overlays.default];
+      };
+      toolchain = rs-harbor.lib.mkToolchain {
+        inherit pkgs;
+        toolchainProfile = "stable";
+      };
+    in {
+      default = toolchain.craneLib.devShell {};
+    });
     packages = forAllSystems (system: let
       pkgs = import nixpkgs {
         inherit system;
         overlays = [rust-overlay.overlays.default];
       };
-      toolchain = rs-harbor.lib.mkToolchain { inherit pkgs; toolchainProfile = "stable"; };
-      rustPlatform = pkgs.makeRustPlatform { rustc = toolchain.rustToolchain; cargo = toolchain.rustToolchain; };
+      toolchain = rs-harbor.lib.mkToolchain {
+        inherit pkgs;
+        toolchainProfile = "stable";
+      };
+      rustPlatform = pkgs.makeRustPlatform {
+        rustc = toolchain.rustToolchain;
+        cargo = toolchain.rustToolchain;
+      };
       buildCache = rs-harbor.lib.mkBuildCachePolicy {
         inherit pkgs;
         sccachePackage = rs-harbor.packages.${system}.sccache;
@@ -43,13 +61,15 @@
         domain = "cargo-crosscut.tartanoglu.com";
         configPath = ./website/plinth-project.toml;
       };
-      cargo-crosscut = buildCache.withRustCache { package = rustPlatform.buildRustPackage {
-        pname = "cargo-crosscut";
-        version = "0.1.0";
-        src = pkgs.lib.cleanSource ./.;
-        cargoLock.lockFile = ./Cargo.lock;
-        meta.mainProgram = "cargo-crosscut";
-      }; };
+      cargo-crosscut = buildCache.withRustCache {
+        package = rustPlatform.buildRustPackage {
+          pname = "cargo-crosscut";
+          version = "0.1.0";
+          src = pkgs.lib.cleanSource ./.;
+          cargoLock.lockFile = ./Cargo.lock;
+          meta.mainProgram = "cargo-crosscut";
+        };
+      };
     in {
       default = cargo-crosscut;
       inherit cargo-crosscut website;
