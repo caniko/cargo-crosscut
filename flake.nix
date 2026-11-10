@@ -108,7 +108,7 @@
       };
     in {
       default = pkgs.mkShell {
-        packages = [toolchain.rustToolchain];
+        packages = [toolchain.rustToolchain pkgs.treefmt];
       };
     });
 

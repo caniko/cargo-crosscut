@@ -4,8 +4,8 @@
 //! and groups crates into compartments that fit within model context limits.
 //! Useful for partitioning large workspaces into bounded analysis units.
 
-pub mod config;
 mod compartments;
+pub mod config;
 pub mod connectivity;
 pub mod overlap;
 pub mod types;
