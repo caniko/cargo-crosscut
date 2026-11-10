@@ -11,3 +11,17 @@ publish_strategy = "members"
 [ci.pages]
 repo = "caniko/cargo-crosscut"
 canonical_domain = "cargo-crosscut.tartanoglu.com"
+
+[release.github]
+repo = "caniko/cargo-crosscut"
+target_branch = "trunk"
+
+# Prebuilt archives for `cargo binstall cargo-crosscut`: one job per release
+# system builds `packages.<system>.release-bundle`, and the crate manifest
+# carries the union `[package.metadata.binstall]` that `simit binstall sync`
+# keeps equal to it.
+[release.artifacts]
+prebuild_binaries = true
+binstall = true
+system_runners = { x86_64-linux = "ubuntu-24.04", aarch64-darwin = "macos-15" }
+sign = false
