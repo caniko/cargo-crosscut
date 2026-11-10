@@ -1,11 +1,27 @@
 [ci]
-runner = "codefloe-global"
+runner = "ubuntu-24.04"
 runtime = "nix"
-step_runners = { cargo-clippy = "codeberg-small", cargo-doc = "codeberg-small", cargo-fmt = "codeberg-tiny", cargo-package = "codeberg-medium", cargo-test = "codeberg-medium", nix-check = "atlas-nix-trusted", quality-tools = "codeberg-small" }
-platform = "forgejo"
+step_runners = { cargo-clippy = "ubuntu-24.04", cargo-doc = "ubuntu-24.04", cargo-fmt = "ubuntu-24.04", cargo-package = "ubuntu-24.04", cargo-test = "ubuntu-24.04", nix-check = "ubuntu-24.04", quality-tools = "ubuntu-24.04" }
+platform = "github"
 publish_crates = true
-provider = "crow"
+provider = "actions"
+all_features = false
+publish_strategy = "members"
 
 [ci.pages]
 repo = "caniko/cargo-crosscut"
 canonical_domain = "cargo-crosscut.tartanoglu.com"
+
+[release.github]
+repo = "caniko/cargo-crosscut"
+target_branch = "trunk"
+
+# Prebuilt archives for `cargo binstall cargo-crosscut`: one job per release
+# system builds `packages.<system>.release-bundle`, and the crate manifest
+# carries the union `[package.metadata.binstall]` that `simit binstall sync`
+# keeps equal to it.
+[release.artifacts]
+prebuild_binaries = true
+binstall = true
+system_runners = { x86_64-linux = "ubuntu-24.04", aarch64-darwin = "macos-15" }
+sign = false

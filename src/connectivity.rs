@@ -1,10 +1,10 @@
 use std::collections::HashMap;
 use std::path::Path;
 
+use crate::CrateInfo;
 use crate::config::LayoutConfig;
 use crate::types::Compartment;
 use crate::workspace::{parse_workspace_deps, parse_workspace_members, resolve_crate_infos};
-use crate::CrateInfo;
 
 /// Compute connectivity-based tiles for DRY deduplication analysis.
 ///

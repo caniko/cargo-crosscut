@@ -109,7 +109,12 @@ fn print_layout(layout: &ProjectLayout) {
             println!("{}", "-".repeat(70));
             for c in compartments {
                 let paths: Vec<_> = c.paths.iter().map(|p| p.display().to_string()).collect();
-                println!("{:<30} {:>8}  {}", c.label, c.estimated_loc, paths.join(", "));
+                println!(
+                    "{:<30} {:>8}  {}",
+                    c.label,
+                    c.estimated_loc,
+                    paths.join(", ")
+                );
             }
 
             if !overlap_tiles.is_empty() {
@@ -145,6 +150,11 @@ fn print_dry_tiles(tiles: &[cargo_crosscut::Compartment]) {
     println!("{}", "-".repeat(70));
     for t in tiles {
         let paths: Vec<_> = t.paths.iter().map(|p| p.display().to_string()).collect();
-        println!("{:<30} {:>8}  {}", t.label, t.estimated_loc, paths.join(", "));
+        println!(
+            "{:<30} {:>8}  {}",
+            t.label,
+            t.estimated_loc,
+            paths.join(", ")
+        );
     }
 }

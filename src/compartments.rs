@@ -1,6 +1,6 @@
+use crate::CrateInfo;
 use crate::config::LayoutConfig;
 use crate::types::Compartment;
-use crate::CrateInfo;
 
 /// Group crates into compartments: large crates get their own, small crates
 /// are batched together up to the group LOC ceiling.

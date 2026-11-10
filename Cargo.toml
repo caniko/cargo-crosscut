@@ -7,7 +7,7 @@ version = "0.1.0"
 edition = "2024"
 rust-version = "1.85"
 license = "MIT OR Apache-2.0"
-repository = "https://codeberg.org/caniko/cargo-crosscut"
+repository = "https://github.com/caniko/cargo-crosscut"
 readme = "README.md"
 
 [lib]
@@ -26,3 +26,32 @@ toml = "0.9"
 
 [dev-dependencies]
 tempfile = "3"
+
+[package.metadata.binstall.overrides.aarch64-apple-darwin]
+pkg-url = "{ repo }/releases/download/{ version }/cargo-crosscut-{ version }-aarch64-apple-darwin.tar.gz"
+pkg-fmt = "tgz"
+bin-dir = "bin/{ bin }{ binary-ext }"
+[package.metadata.binstall.overrides.aarch64-unknown-linux-gnu]
+pkg-url = "{ repo }/releases/download/{ version }/cargo-crosscut-{ version }-aarch64-unknown-linux-musl.tar.gz"
+pkg-fmt = "tgz"
+bin-dir = "bin/{ bin }{ binary-ext }"
+[package.metadata.binstall.overrides.aarch64-unknown-linux-musl]
+pkg-url = "{ repo }/releases/download/{ version }/cargo-crosscut-{ version }-aarch64-unknown-linux-musl.tar.gz"
+pkg-fmt = "tgz"
+bin-dir = "bin/{ bin }{ binary-ext }"
+[package.metadata.binstall.overrides.x86_64-pc-windows-gnu]
+pkg-url = "{ repo }/releases/download/{ version }/cargo-crosscut-{ version }-x86_64-pc-windows-gnu.zip"
+pkg-fmt = "zip"
+bin-dir = "bin/{ bin }{ binary-ext }"
+[package.metadata.binstall.overrides.x86_64-pc-windows-msvc]
+pkg-url = "{ repo }/releases/download/{ version }/cargo-crosscut-{ version }-x86_64-pc-windows-gnu.zip"
+pkg-fmt = "zip"
+bin-dir = "bin/{ bin }{ binary-ext }"
+[package.metadata.binstall.overrides.x86_64-unknown-linux-gnu]
+pkg-url = "{ repo }/releases/download/{ version }/cargo-crosscut-{ version }-x86_64-unknown-linux-musl.tar.gz"
+pkg-fmt = "tgz"
+bin-dir = "bin/{ bin }{ binary-ext }"
+[package.metadata.binstall.overrides.x86_64-unknown-linux-musl]
+pkg-url = "{ repo }/releases/download/{ version }/cargo-crosscut-{ version }-x86_64-unknown-linux-musl.tar.gz"
+pkg-fmt = "tgz"
+bin-dir = "bin/{ bin }{ binary-ext }"
