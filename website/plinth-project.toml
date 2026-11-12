@@ -1,53 +1,80 @@
 [site]
 title = "cargo-crosscut"
-description = "Analyze Rust workspace layout by decomposing large workspaces into bounded analysis units. Useful for partitioning codebases into chunks that fit within LLM context windows or for understanding workspace structure."
+description = "A cargo subcommand and library that reads workspace manifests and .rs line counts, then partitions a workspace into LOC-bounded compartments, cross-boundary overlap tiles and named dependency edges."
 base_url = "/"
-footer_note = "Generated from repository metadata by the plinth-project FOSS sweep."
 
 [[nav]]
 label = "Overview"
 href = "#overview"
 
 [[nav]]
+label = "Install"
+href = "#install"
+
+[[nav]]
 label = "Source"
-href = "ssh://git@codeberg.org/caniko/cargo-crosscut.git"
+href = "https://github.com/caniko/cargo-crosscut"
 
 [[footer_links]]
 label = "Source"
-href = "ssh://git@codeberg.org/caniko/cargo-crosscut.git"
+href = "https://github.com/caniko/cargo-crosscut"
 
 [[pages]]
 slug = "index"
 title = "cargo-crosscut"
-description = "Analyze Rust workspace layout by decomposing large workspaces into bounded analysis units. Useful for partitioning codebases into chunks that fit within LLM context windows or for understanding workspace structure."
+description = "A cargo subcommand and library that reads workspace manifests and .rs line counts, then partitions a workspace into LOC-bounded compartments, cross-boundary overlap tiles and named dependency edges."
 
 [[pages.sections]]
 type = "hero"
 title = "cargo-crosscut"
-tagline = "Analyze Rust workspace layout by decomposing large workspaces into bounded analysis units. Useful for partitioning codebases into chunks that fit within LLM context windows or for understanding workspace structure."
-subtitle = "Analyze Rust workspace layout by decomposing large workspaces into bounded analysis units. Useful for partitioning codebases into chunks that fit within LLM context windows or for understanding workspace structure."
+tagline = "Split large Rust workspaces into analysis-sized pieces."
+subtitle = "A cargo subcommand and library that reads workspace manifests and .rs line counts, then partitions a workspace into LOC-bounded compartments, cross-boundary overlap tiles and named dependency edges."
 
 [[pages.sections.ctas]]
 label = "View source"
-href = "ssh://git@codeberg.org/caniko/cargo-crosscut.git"
+href = "https://github.com/caniko/cargo-crosscut"
 primary = true
+
+[[pages.sections.ctas]]
+label = "Install"
+href = "#install"
 
 [[pages.sections]]
 type = "feature_grid"
 id = "overview"
 
 [[pages.sections.features]]
-title = "Bounded compartments"
-description = "Groups crates into LOC-bounded partitions, separating large crates from clusters of smaller ones so analysis fits a deliberate working set."
+title = "Compartments"
+description = "Groups workspace members into LOC-bounded partitions, keeping very large crates apart from clusters of smaller ones so one review pass stays a deliberate size."
 
 [[pages.sections.features]]
 title = "Overlap tiles"
-description = "Builds cross-boundary analysis units for studying dependencies that span compartment boundaries."
+description = "Builds analysis units for dependencies that cross a compartment boundary, so the interface between two partitions is visible instead of being cut in half."
 
 [[pages.sections.features]]
 title = "Connectivity tiles"
-description = "Uses agglomerative clustering to expose duplication and DRY relationships across crate boundaries."
+description = "Runs agglomerative clustering over crate dependency edges to point at likely duplication and DRY relationships across crate boundaries."
 
 [[pages.sections.features]]
-title = "Workspace connectome"
-description = "Emits the full workspace dependency graph as named directed edges, with JSON output for downstream tooling."
+title = "Connectome and JSON"
+description = "Emits the whole workspace dependency graph as named directed edges, and a JSON mode lets another tool consume the layout instead of parsing text."
+
+[[pages.sections]]
+type = "install"
+id = "install"
+heading = "Install"
+intro = "Install the cargo subcommand from crates.io, then run it in the workspace you want to decompose. Thresholds and JSON output are flags on the same command."
+guide_href = "https://github.com/caniko/cargo-crosscut"
+
+[[pages.sections.primary_routes]]
+label = "cargo install"
+audience = "Any platform with a Rust toolchain"
+command = "cargo install cargo-crosscut"
+href = "https://github.com/caniko/cargo-crosscut#installation"
+recommended = true
+
+[[pages.sections.secondary_routes]]
+label = "Analyze the current workspace"
+audience = "Run inside a Cargo workspace"
+command = "cargo crosscut"
+href = "https://github.com/caniko/cargo-crosscut#cli-usage"
