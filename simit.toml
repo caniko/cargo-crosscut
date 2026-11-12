@@ -12,6 +12,11 @@ publish_strategy = "members"
 repo = "caniko/cargo-crosscut"
 canonical_domain = "cargo-crosscut.tartanoglu.com"
 
+# This repository has no CHANGELOG.md, so release notes come from git history
+# instead of the changelog section the release workflow would otherwise require.
+[release.notes]
+source = "git"
+
 [release.github]
 repo = "caniko/cargo-crosscut"
 target_branch = "trunk"
