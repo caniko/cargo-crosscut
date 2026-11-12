@@ -29,7 +29,7 @@
       harbor-rs.lib.mkBinstallRelease {
         inherit pkgs system;
         pname = "cargo-crosscut";
-        version = "0.1.1";
+        version = "0.1.2";
         commonArgs = {
           src = pkgs.lib.cleanSource ./.;
           cargoLock = ./Cargo.lock;
@@ -66,7 +66,7 @@
       cargo-crosscut = buildCache.withRustCache {
         package = rustPlatform.buildRustPackage {
           pname = "cargo-crosscut";
-          version = "0.1.1";
+          version = "0.1.2";
           src = pkgs.lib.cleanSource ./.;
           cargoLock.lockFile = ./Cargo.lock;
           meta.mainProgram = "cargo-crosscut";
